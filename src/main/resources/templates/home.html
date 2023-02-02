@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:insert="head.html">
+</head>
+<body>
+
+    <div class="container" th:insert="~{navbar.html}"></div>
+    <br><br>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" th:each="it : ${item}">
+                <div class="card" style="width: 18rem;">
+                    <img th:src="@{'/avatars/' + ${it.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${it.name}"></h5>
+                        <p class="card-text" th:text="${it.description}"></p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item ui-state-disabled" th:text="${it.price}"></li>
+                        </ul>
+                        <a th:href="@{'/'}" class="btn btn-primary" sec:authorize="isAuthenticated()">Buy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

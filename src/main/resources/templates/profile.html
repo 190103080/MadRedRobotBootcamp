@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:insert="~{head.html}">
+</head>
+<body>
+
+    <div class="container" th:insert="~{navbar.html}"></div>
+    <br>
+    <div class="container">
+      <h1>SECURITY SAMPLE</h1>
+      <h2>WELCOME TO <strong>PROFILE</strong> PAGE</h2>
+      <h2>DEAR <span th:text="${#authentication.getPrincipal().email  }"></span> </h2>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container">
+        <form th:action="@{'/addItem'}" enctype="multipart/form-data" method="post">
+            <input type="hidden" th:value="${#authentication.getPrincipal().id}" name="user.id">
+            <label>Name:</label><br>
+            <input placeholder="Type name" type="text" size="80" name="name"><br>
+            <label>Description:</label><br>
+            <input placeholder="Type description" type="text" size="80" name="description"><br>
+            <label>Price:</label><br>
+            <input placeholder="Type price" type="number" size="80" name="price"><br>
+            <label>Image:</label><br>
+            <input type="file" name="image_pic">
+            <br><br>
+            <button class="btn btn-success">Add Item</button>
+        </form>
+    </div>
+
+    <div class="b-example-divider"></div>
+    <br><br>
+    <div class="container">
+        <form th:action="@{'/exit'}" method="post">
+            <button class="btn btn-outline-dark">Sign Out</button>
+        </form>
+    </div>
+
+</body>
+</html>
